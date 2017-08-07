@@ -66,18 +66,18 @@ public class DeviceSessionCtx {
   public DeviceAuthService getAuthService() {
     return authService;
   }
-  
+
   public boolean login(DeviceCredentialsFilter credentials) {
     DeviceAuthResult result = authService.process(credentials);
     if (result.isSuccess()) {
-        Optional<Device> deviceOpt = authService.findDeviceById(result.getDeviceId());
-        if (deviceOpt.isPresent()) {
-            device = deviceOpt.get();
-        }
-        return true;
+      Optional<Device> deviceOpt = authService.findDeviceById(result.getDeviceId());
+      if (deviceOpt.isPresent()) {
+        device = deviceOpt.get();
+      }
+      return true;
     } else {
-        log.info("Can't find device using credentials [{}] due to {}", credentials, result.getErrorMsg());
-        return false;
+      log.info("Can't find device using credentials [{}] due to {}", credentials, result.getErrorMsg());
+      return false;
     }
-}
+  }
 }

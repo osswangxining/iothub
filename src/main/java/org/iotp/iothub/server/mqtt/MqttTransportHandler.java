@@ -261,7 +261,7 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter
         root.addProperty("messageId", messageId);
         log.info("[{}] msg: {}", sessionId, root.toString());
 
-        this.msgProducer.send(KafkaTopics.DEVICE_TELEMETRY_TOPIC, device.getId().toString(), root.toString());
+        this.msgProducer.send(kafkaOutboundTopic, device.getId().toString(), root.toString());
       }
       // processor.process(basicToDeviceActorSessionMsg);
     } else {
